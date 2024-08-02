@@ -59,10 +59,10 @@ const InitiateSTKPush = (
 		BusinessShortCode: process.env.MPESA_SHORTCODE,
 		Password: password,
 		Timestamp: timestamp,
-		TransactionType: "CustomerPayBillOnline",
+		TransactionType: "CustomerBuyGoodsOnline",
 		Amount: amount,
 		PartyA: phoneNumber,
-		PartyB: process.env.MPESA_SHORTCODE,
+		PartyB: `4321384`,
 		PhoneNumber: phoneNumber,
 		CallBackURL: CallBackURL,
 		AccountReference: `${softwareId}`,
@@ -113,7 +113,7 @@ router.post("/online/:type/:softwareId", (req, res) => {
 				accessToken,
 				`${req.body.amount}`,
 				`${req.body.phone}`,
-				`https://6a10-196-96-76-50.ngrok-free.app/pro/verify-online/${req.params.type}/${req.params.softwareId}`,
+				`https://schoolapi.techsystem.world/pro/verify-online/${req.params.type}/${req.params.softwareId}`,
 				req.params.softwareId,
 				res
 			);

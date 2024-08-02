@@ -118,14 +118,14 @@ const InitiateSTKPush = (
 		BusinessShortCode: process.env.MPESA_SHORTCODE,
 		Password: password,
 		Timestamp: timestamp,
-		TransactionType: "CustomerPayBillOnline",
+		TransactionType: "CustomerBuyGoodsOnline",
 		Amount: amount,
 		PartyA: phoneNumber,
-		PartyB: process.env.MPESA_SHORTCODE,
+		PartyB: `4321384`,
 		PhoneNumber: phoneNumber,
 		CallBackURL: CallBackURL,
 		AccountReference: `${softwareId}-sms`,
-		TransactionDesc: "Rental Techsystem SMS",
+		TransactionDesc: "School Techsystem SMS",
 	};
 
 	return new Promise((resolve, reject) => {
@@ -177,7 +177,7 @@ router.post("/purchase", (req, res) => {
 				accessToken,
 				`${req.body.amount}`,
 				`${req.body.number}`,
-				`https://6a10-196-96-76-50.ngrok-free.app/sms/purchase-verify/${req.body.instLinker}`,
+				`https://schoolapi.techsystem.world/sms/purchase-verify/${req.body.instLinker}`,
 				`${parseInt(req.body.instLinker / 1000)}`.split("").reverse().join(""),
 				res
 			);
@@ -267,12 +267,7 @@ router.post("/send", verifyToken, verifyAdmin, (req, res) => {
 						res
 					);
 				})
-				.catch((err) => {
-					res.json({
-						status: 500,
-						message: "sms error",
-					});
-				});
+				.catch((err) => {});
 		})
 		.catch((err) =>
 			res.json({

@@ -72,7 +72,10 @@ app.use("/grade", require("./routes/grades"));
 app.use("/mode", require("./routes/mode"));
 
 // setting up online pay
-app.use("/online-pay", require("./routes/mpesa/online"));
+app.use("/online", require("./routes/mpesa/online"));
+
+// verify online pay
+app.use("/online-pay", require("./routes/mpesa/onlinePayments"));
 
 // initiating online pay by students
 app.use("/client-pay", require("./routes/mpesa/mpesapay"));
